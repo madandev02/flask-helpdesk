@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Panel de Administrador</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Estado</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.title }}</td>
+            <td>
+                <span class="badge 
+                    {% if ticket.status == 'Abierto' %}bg-success
+                    {% elif ticket.status == 'En Proceso' %}bg-warning text-dark
+                    {% else %}bg-secondary
+                    {% endif %}
+                ">
+                    {{ ticket.status }}
+                </span>
+            </td>
+            <td>{{ ticket.user.username }}</td>
+            <td>
+                <a href="{{ url_for('view_ticket', ticket_id=ticket.id) }}" class="btn btn-sm btn-primary">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

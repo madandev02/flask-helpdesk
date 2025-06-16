@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Editar Ticket</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Título</label>
+            <input type="text" name="title" class="form-control" value="{{ ticket.title }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Descripción</label>
+            <textarea name="description" class="form-control" rows="5" required>{{ ticket.description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label>Estado</label>
+            <select name="status" class="form-select">
+                <option value="Abierto" {% if ticket.status == 'Abierto' %}selected{% endif %}>Abierto</option>
+                <option value="En Proceso" {% if ticket.status == 'En Proceso' %}selected{% endif %}>En Proceso</option>
+                <option value="Cerrado" {% if ticket.status == 'Cerrado' %}selected{% endif %}>Cerrado</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

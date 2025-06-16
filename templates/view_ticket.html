@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ ticket.title }}</h2>
+<p><strong>Estado:</strong> <span class="badge bg-secondary">{{ ticket.status }}</span></p>
+<p><strong>Descripción:</strong></p>
+<div class="card p-3 shadow-sm mb-3">{{ ticket.description }}</div>
+<a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Volver</a>
+{% endblock %}
